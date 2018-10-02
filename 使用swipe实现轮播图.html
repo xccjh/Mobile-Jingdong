@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+    <link rel="stylesheet" type="text/css" href="css/index-zepto.css">
+    <style type="text/css">
+    .jd_layout {
+        position: relative;
+    }
+    .swipe {
+        width:100%;
+        overflow: hidden;
+        visibility: hidden;
+        position: relative;
+    }
+
+    .swipe-wrap {
+        overflow: hidden;
+        position: relative;
+    }
+
+    .swipe-wrap>li {
+        float: left;
+        width: 100%;
+        position: relative;
+    }
+    .swipe-wrap>li img {
+            width: 100%;
+    }
+    .right ,
+    .left {
+        font-size: 50px;
+        display: block;
+        width: 50px;
+        height: 80px;
+        /*background-color: red;*/
+        background: rgba(0,0,0,0.3);
+        cursor: pointer;
+        color: #fff;
+    }
+    .right {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .left {
+        position: absolute;
+        left: 0;
+        top:50%;
+        transform: translateY(-50%);
+    }
+
+    </style>
+</head>
+
+<body>
+    <div class="jd_layout">
+        <div id='slider' class='swipe'>
+            <ul class="swipe-wrap">
+                <li>
+                    <a href="javascript:;">
+                        <img src="upload/l1.jpg">
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <img src="upload/l2.jpg">
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <img src="upload/l3.jpg">
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <img src="upload/l4.jpg">
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <img src="upload/l5.jpg">
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <img src="upload/l6.jpg">
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <img src="upload/l7.jpg">
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <img src="upload/l8.jpg">
+                    </a>
+                </li>
+            </ul>
+            <ul class="jd_bannerIndicater">
+                <li class="active"></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+            <div>
+                <div class="left" id="left"> < </div>
+                <div class="right" id="right"> > </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/swipe.js"></script>
+    <script type="text/javascript">
+        var jd_banner = document.querySelector(".swipe");
+        var indicators = jd_banner.querySelector("ul:last-of-type").querySelectorAll("li");
+        var left=document.getElementById("left");
+        var right=document.getElementById("right");
+        left.onclick=function() {
+            window.mySwipe.prev();
+        }
+        right.onclick=function() {
+            window.mySwipe.next();
+        }
+        window.mySwipe = Swipe(document.getElementById('slider'),{
+            auto: 500,
+            callback: function (index) {
+                for (var i = 0; i < indicators.length; i++) {
+                    indicators[i].classList.remove("active");
+                }
+                indicators[index].classList.add("active");
+            }
+        });
+    </script>
+</body>
+
+</html>
